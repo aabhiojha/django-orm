@@ -3,6 +3,7 @@ from restaurant.models import Rating, Restaurant, Sale
 from django.contrib.auth.models import User
 from django.db import connection
 from pprint import pprint
+from django.db.models.functions import Lower
 
 
 def run():
@@ -56,7 +57,32 @@ def run():
     # print(restaurant.ratings.all())
     # restaurant.delete()
 
-    restaurant = Restaurant.objects.all().delete()
-    print(restaurant)
+    # restaurant = Restaurant.objects.all()
+    # rating = Rating.objects.all()
+    # sale = Sale.objects.all()
+    # print(restaurant.count())
+    # print(rating.count())
+    # print(sale.count())
+
+    # chinese = Restaurant.TypeChoices.CHINESE
+    # indian = Restaurant.TypeChoices.INDIAN
+    # mexican = Restaurant.TypeChoices.MEXICAN
+    # check_types = [chinese, indian, mexican]
+
+    # restaurants = Restaurant.objects.filter(restaurant_type__in=check_types)
+    # print(restaurants)
+
+    # chinese = Restaurant.TypeChoices.CHINESE
+    # restaurant = Restaurant.objects.exclude(restaurant_type=chinese)
+    # print(restaurant)
+    # print(restaurant.count())
+
+    # restaurant = Restaurant.objects.filter(longitude__lt="0")
+    # print(restaurant)
+
+    # sales = Sale.objects.filter(income__range=(50, 60)).order_by("-income")
+    # print([sale.income for sale in sales])
+    restaurants = Restaurant.objects.order_by("date_opened")[2:5]
+    print(restaurants)
 
     pprint(connection.queries)
