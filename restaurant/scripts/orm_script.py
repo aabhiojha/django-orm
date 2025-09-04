@@ -3,7 +3,6 @@ from restaurant.models import Rating, Restaurant, Sale
 from django.contrib.auth.models import User
 from django.db import connection
 from pprint import pprint
-from django.db.models.functions import Lower
 
 
 def run():
@@ -82,7 +81,17 @@ def run():
 
     # sales = Sale.objects.filter(income__range=(50, 60)).order_by("-income")
     # print([sale.income for sale in sales])
-    restaurants = Restaurant.objects.order_by("date_opened")[2:5]
-    print(restaurants)
+    # restaurants = Restaurant.objects.order_by("date_opened")[2:5]
+
+    # restaurant = Restaurant.objects.latest("date_opened")
+    # print(restaurant.date_opened, " for ", restaurant.name)
+
+    # restaurant = Restaurant.objects.latest()
+    # print(restaurant.date_opened, " for ", restaurant.name)
+
+    # ratings = Rating.objects.filter(
+    #     restaurant__restaurant_type=Restaurant.TypeChoices.CHINESE
+    # )
+    # print(ratings)
 
     pprint(connection.queries)

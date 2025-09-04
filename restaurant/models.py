@@ -23,6 +23,7 @@ class Restaurant(models.Model):
 
     class Meta:
         ordering = [Lower("name"), "date_opened"]
+        get_latest_by = "date_opened"
 
     def __str__(self):
         return self.name
@@ -41,8 +42,8 @@ class Rating(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
 
-    def __str__(self):
-        return f"{self.user}'s rating: {self.rating} for {self.restaurant} restaurant"
+    # def __str__(self):
+    #     return f"{self.user}'s rating: {self.rating} for {self.restaurant} restaurant"
 
 
 class Sale(models.Model):
