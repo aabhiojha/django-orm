@@ -1,5 +1,5 @@
 from django.utils import timezone
-from restaurant.models import Rating, Restaurant, Sale
+from restaurant.models import Rating, Restaurant, Sale, Staff
 from django.contrib.auth.models import User
 from django.db import connection
 from pprint import pprint
@@ -94,4 +94,9 @@ def run():
     # )
     # print(ratings)
 
-    pprint(connection.queries)
+    # pprint(connection.queries)
+
+    staff, created = Staff.objects.get_or_create(name="Ram Bahadur")
+    print(staff.restaurant.all())
+    staff.restaurant.add(Restaurant.objects.first())
+    print(staff.restaurant.all())
